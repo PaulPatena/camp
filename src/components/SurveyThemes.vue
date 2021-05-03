@@ -7,11 +7,15 @@
     >
       <v-expansion-panel-header>{{ theme.name }}</v-expansion-panel-header>
       <v-expansion-panel-content>
-        <ol>
+        <!-- <ol>
           <li v-for="question in theme.questions" :key="question.description">
-            {{question.description}} {{getAverageResponse(question.survey_responses)}}
+            {{question.description}} <StarRating :rating="getAverageResponse(question.survey_responses)"/>
           </li>            
-        </ol>
+        </ol> -->
+        <v-list-item-content v-for="question in theme.questions" :key="question.description">
+          <v-list-item-title>{{question.description}}</v-list-item-title>
+          <v-list-item-subtitle><StarRating :rating="getAverageResponse(question.survey_responses)"/></v-list-item-subtitle>
+        </v-list-item-content>
 
       </v-expansion-panel-content>
     </v-expansion-panel>
@@ -19,12 +23,13 @@
 </template>
 
 <script> 
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
+import StarRating from '@/components/StarRating.vue'
 
 export default {
   name: 'SurveyThemes',
   components: {
-
+    StarRating,
   },
   props: {
     themes: {type: Array}
@@ -33,7 +38,7 @@ export default {
     panel: [],
   }),
   computed: {
-    ...mapGetters(['getDarkMode', 'getDetailedViewIdx', 'getDetailedSurvey']),
+    ...mapGetters(['getDarkMode']),
   },
   methods: {
     getAverageResponse(survey_responses) {
