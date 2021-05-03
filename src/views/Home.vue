@@ -10,8 +10,7 @@
             :key="survey.name"
             :dark="getDarkMode"
           >
-            <v-card-title>{{ survey.name }}</v-card-title>
-            <div class="ml-4">Responses: {{generateSurveySummary(survey)}}</div>
+            <SurveySummary :survey="survey"></SurveySummary>
             <v-card-actions>
               <v-btn color="primary" text @click="loadDetailedView(survey_idx)">
                 Details
@@ -28,12 +27,14 @@
 import { mapActions, mapMutations, mapGetters } from 'vuex';
 import { Fragment } from 'vue-fragment';
 import LoadingCard from '@/components/LoadingCard.vue';
+import SurveySummary from '@/components/SurveySummary.vue';
 
 export default {
   name: 'Main',
   components: {
     Fragment,
-    LoadingCard
+    LoadingCard,
+    SurveySummary,
   },
   computed: {
     ...mapGetters(['getDarkMode', 'getSurveys']),
@@ -41,9 +42,7 @@ export default {
   methods: {
     ...mapMutations(['setDetailedViewIdx']),
     ...mapActions(['fetchSurveys']),
-    generateSurveySummary(survey) {
-      return `${survey.submitted_response_count} / ${survey.participant_count} (${survey.response_rate.toFixed(4)*100}%)`
-    },
+
     loadDetailedView(survey_idx) {
       this.setDetailedViewIdx(survey_idx)
       this.$router.push({path: '/details'})

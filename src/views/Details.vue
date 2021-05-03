@@ -10,20 +10,14 @@
 
     <v-row justify="center">
       <v-col cols="12" sm="9">
-        <v-alert v-if="getDetailedViewIdx===undefined" :dark="getDarkMode"
-          border="left" colored-border color="warning" elevation="2"
-        >
-          <span class="subtitle">Please select a survey in home page</span>
-        </v-alert>
-        <LoadingCard v-else-if="getDetailedSurvey === 'loading'"></LoadingCard>
+        <WarningAlert v-if="getDetailedViewIdx===undefined" message="Please select a survey in home page."/>
+        <LoadingCard v-else-if="getDetailedSurvey === 'loading'"/>
         <Fragment v-else>
           <v-card
             class="pa-2 mb-2"
             :dark="getDarkMode"
           >
-            <v-card-title>{{ getDetailedSurvey.name }}</v-card-title>
-            <!-- <div class="ml-4">Response: {{generateSurveySummary(survey)}}</div> -->
-
+            <SurveySummary :survey="getDetailedSurvey"/>
           </v-card>
         </Fragment>
       </v-col>
@@ -35,12 +29,16 @@
 import { mapActions, mapGetters } from 'vuex';
 import { Fragment } from 'vue-fragment';
 import LoadingCard from '@/components/LoadingCard.vue';
+import SurveySummary from '@/components/SurveySummary.vue';
+import WarningAlert from '@/components/WarningAlert.vue';
 
 export default {
   name: 'Details',
   components: {
     Fragment,
     LoadingCard,
+    SurveySummary,
+    WarningAlert,
   },
   computed: {
     ...mapGetters(['getDarkMode', 'getDetailedViewIdx', 'getDetailedSurvey']),
