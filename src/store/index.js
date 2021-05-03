@@ -3,24 +3,41 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+const BASE_URL = `https://px2yf2j445.execute-api.us-west-2.amazonaws.com/production`
+
+const fetchJson = async (url) => {
+  const resp = await fetch(`${BASE_URL}${url}`)
+  return await resp.json()
+}
+
 export default new Vuex.Store({
   state: {
-    darkMode: true,
-    selectedCategory: "/Inventory",
+    darkMode: false,
+    surveys: undefined,
+    detailedViewIdx: undefined
   },
   getters: {
-    getSelectedCategory: state => state.selectedCategory,
     getDarkMode: state => state.darkMode,
+    getSurveys: state => state.surveys,
   },
   mutations: {
     invertDarkMode(state) {
       state.darkMode = !state.darkMode
     },
-    setSelectedCategory(state, payload) {
-      state.selectedCategory = payload
+    setSurveys(state, payload) {
+      state.surveys = payload
+    },
+    setDetailedViewIdx(state, payload) {
+      state.detailedViewIdx = payload
     }
+
   },
   actions: {
+    fetchSurveys({commit}) {
+      fetchJson('/surveys')
+        .then(resp => commit('setSurveys', resp.survey_results))
+        .catch(err => console.log(err)) // Intentionally left error handling out in this solution
+    }
   },
   modules: {
   }
