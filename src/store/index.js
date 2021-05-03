@@ -36,8 +36,6 @@ export default new Vuex.Store({
     setDetailedSurvey(state, payload) {
       state.detailedSurvey = payload
     }
-
-
   },
   actions: {
     fetchSurveys({commit}) {
