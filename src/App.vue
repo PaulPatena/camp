@@ -17,7 +17,9 @@
     </v-app-bar>
 
     <v-main :class="{'dark-background': getDarkMode, 'light-background': !getDarkMode}">
-      <router-view/>
+      <transition name="fade-transition" mode="out-in">
+        <router-view/>
+      </transition>
     </v-main>
   </v-app>
 </template>
