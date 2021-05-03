@@ -1,12 +1,9 @@
 <template>
   <v-expansion-panels
-    v-model="panel"
-    multiple
-    :dark="getDarkMode"
+    v-model="panel" multiple :dark="getDarkMode"
   >
     <v-expansion-panel
-      v-for="theme in themes"
-      :key="theme.name"
+      v-for="theme in themes" :key="theme.name"
     >
       <v-expansion-panel-header>{{ theme.name }}</v-expansion-panel-header>
       <v-expansion-panel-content>
@@ -25,7 +22,7 @@ export default {
 
   },
   props: {
-    themes: {type: Object}
+    themes: {type: Array}
   },
   data: () => ({
     panel: [],
