@@ -70,7 +70,7 @@ import {mapGetters} from 'vuex';
 // import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: 'Home',
+  name: 'Main',
   components: {
     // HelloWorld
   },
