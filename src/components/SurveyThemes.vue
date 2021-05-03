@@ -1,6 +1,5 @@
 <template>
   <Fragment>
-
     <v-expansion-panels
       v-model="panel" multiple :dark="getDarkMode"
     >
@@ -17,11 +16,6 @@
             {{question.description}}
             <StarRating :rating="getAverageResponse(question.survey_responses)"/>
           </li>            
-          <!-- <v-list-item-content v-for="question in theme.questions" :key="question.description">
-            <v-list-item-title>{{question.description}}</v-list-item-title>
-            <v-list-item-subtitle><StarRating :rating="getAverageResponse(question.survey_responses)"/></v-list-item-subtitle>
-          </v-list-item-content> -->
-
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
