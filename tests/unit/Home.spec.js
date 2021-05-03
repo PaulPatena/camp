@@ -19,9 +19,8 @@ describe('Home.vue', () => {
     })
   })
 
-  it('dispatches "fetchSurveys" Home is mounted', () => {
+  it('dispatches "fetchSurveys" when Home is mounted', () => {
     const wrapper = shallowMount(Home, { store, localVue })
     expect(actions.fetchSurveys).toHaveBeenCalled()
   })
-
 })
