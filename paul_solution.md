@@ -7,7 +7,7 @@ My solution is responsive, should be mobile/tablet/computer friendly. I also add
 I saved all my backend api logic in a central store. This way its easy to share data across components. Mutations are synchronous while Actions are async.
 
 # Known Trade-Offs
-I purposely didn't write this code in TS to save on time. I also didn't give user feedback in-case the api-call fails, though error is being caught and logged into the console.
+I purposely didn't write this code in TS to save on time. I also didn't give user feedback in-case the api-call fails, though error is being caught and logged into the console. I only spent only one night to implement this, only a basic unit test is included. No e2e has been made.
 
 # Solution Description
 *Spinners are going to be shown while fetching backend data.*

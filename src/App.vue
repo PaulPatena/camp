@@ -11,13 +11,15 @@
         <v-icon>mdi-brightness-6</v-icon>
       </v-btn>
 
-      <v-btn icon title="source code for this project" href="https://github.com/PaulPatena/personal_site_2021" target="_blank">
+      <v-btn icon title="source code for this project" href="https://github.com/PaulPatena/camp" target="_blank">
         <v-icon>mdi-github</v-icon>
       </v-btn>
     </v-app-bar>
 
     <v-main :class="{'dark-background': getDarkMode, 'light-background': !getDarkMode}">
-      <router-view/>
+      <transition name="fade-transition" mode="out-in">
+        <router-view/>
+      </transition>
     </v-main>
   </v-app>
 </template>
