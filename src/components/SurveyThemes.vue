@@ -1,5 +1,4 @@
 <template>
-  <Fragment>
     <v-expansion-panels
       v-model="panel" multiple :dark="getDarkMode"
     >
@@ -19,19 +18,16 @@
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
-  </Fragment>
 </template>
 
 <script> 
 import { mapGetters } from 'vuex';
-import { Fragment } from 'vue-fragment';
 import StarRating from '@/components/StarRating.vue'
 
 export default {
   name: 'SurveyThemes',
   components: {
     StarRating,
-    Fragment,
   },
   props: {
     themes: {type: Array}
