@@ -1,35 +1,37 @@
 <template>
-  <v-expansion-panels
-    v-model="panel" multiple :dark="getDarkMode"
-  >
-    <v-expansion-panel
-      v-for="theme in themes" :key="theme.name"
+  <Fragment>
+    <v-expansion-panels
+      v-model="panel" multiple :dark="getDarkMode"
     >
-      <v-expansion-panel-header>{{ theme.name }}</v-expansion-panel-header>
-      <v-expansion-panel-content>
-        <!-- <ol>
-          <li v-for="question in theme.questions" :key="question.description">
-            {{question.description}} <StarRating :rating="getAverageResponse(question.survey_responses)"/>
+      <div class="mb-2">
+        <v-btn @click="expandAll()" class="mr-2">Expand All</v-btn>
+         <v-btn @click="collapseAll()">Collapse All</v-btn>
+      </div>
+      <v-expansion-panel
+        v-for="theme in themes" :key="theme.name"
+      >
+        <v-expansion-panel-header>{{ theme.name }}</v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <li v-for="question in theme.questions" :key="question.description" class="mb-2">
+            {{question.description}}
+            <StarRating :rating="getAverageResponse(question.survey_responses)"/>
           </li>            
-        </ol> -->
-        <v-list-item-content v-for="question in theme.questions" :key="question.description">
-          <v-list-item-title>{{question.description}}</v-list-item-title>
-          <v-list-item-subtitle><StarRating :rating="getAverageResponse(question.survey_responses)"/></v-list-item-subtitle>
-        </v-list-item-content>
-
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-  </v-expansion-panels>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-expansion-panels>
+  </Fragment>
 </template>
 
 <script> 
 import { mapGetters } from 'vuex';
+import { Fragment } from 'vue-fragment';
 import StarRating from '@/components/StarRating.vue'
 
 export default {
   name: 'SurveyThemes',
   components: {
     StarRating,
+    Fragment,
   },
   props: {
     themes: {type: Array}
@@ -56,7 +58,14 @@ export default {
       } catch (error) {
         return 0  // handling of division by zero
       }
-    }
+    },
+    expandAll () {
+      this.panel = this.themes.map((theme, idx) => idx)
+    },
+    // Reset the panel
+    collapseAll () {
+      this.panel = []
+    },
   }
 };
 </script>

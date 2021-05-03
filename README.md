@@ -1,4 +1,4 @@
-# personal_site
+# Paul is camping
 
 ## Project setup
 ```
