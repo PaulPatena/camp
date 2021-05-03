@@ -16,9 +16,6 @@ export default {
   props: {
     rating: {type: String}
   },
-  data: () => ({
-    fuckme: 0,
-  }),
   computed: {
     roundedRating: function () {
       return Math.round(parseFloat(this.rating)*2)/2; // Round off to nearest 0.5
