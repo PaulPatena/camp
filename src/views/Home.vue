@@ -7,8 +7,7 @@
           <v-card
             class="pa-2 mb-2"
             v-for="(survey, survey_idx) in getSurveys"
-            :key="survey.name"
-            :dark="getDarkMode"
+            :key="survey.name" :dark="getDarkMode"
           >
             <SurveySummary :survey="survey"></SurveySummary>
             <v-card-actions>

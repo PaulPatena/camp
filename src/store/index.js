@@ -51,7 +51,7 @@ export default new Vuex.Store({
         commit('setDetailedSurvey', 'loading')
         fetchJson(url)
           .then(resp => {
-            console.log(resp)
+            console.log(resp.survey_result_detail)
             commit('setDetailedSurvey', resp.survey_result_detail)
           })
           .catch(err => console.log(err)) // Intentionally left error handling out in this solution

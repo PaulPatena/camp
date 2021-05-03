@@ -1,7 +1,7 @@
 <template>
   <Fragment>
     <v-card-title>{{ survey.name }}</v-card-title>
-    <div class="ml-4">Responses: {{generateSurveySummary()}}</div>
+    <div class="ml-4 mb-4">Participation: {{generateSurveySummary()}}</div>
   </Fragment>
 </template>
 

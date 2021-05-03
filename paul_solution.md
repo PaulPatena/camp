@@ -1,5 +1,6 @@
 I chose Vuetify in this solution as it provides a Material Design Component implementation,
 plus Vue JS comes with 1st party state-mgmt and router thus reducing boiler plate code by a LOT.
+My solution is responsive.
 
 I intentionally didn't write this code in Typescript as it will take more time to implement since I'm not actively using TS.
 
