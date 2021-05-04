@@ -27,8 +27,10 @@
         background-color="transparent"
       >
         <v-card flat :class="{'light-background': getDarkMode}">
-          <v-card-text v-if="idx===0">
-            <SurveyThemes :themes="getDetailedSurvey.themes"/>
+          <v-card-text >
+            <SurveyThemes v-if="idx===0" :themes="getDetailedSurvey.themes"/>
+            <SurveyRespondents v-else :respondentIds="getRespondentIds"/>
+            <!-- TODO: Componentize common-code shared between SurveyThemes and SurveryRespondents -->
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -39,6 +41,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import SurveyThemes from './SurveyThemes.vue';
+import SurveyRespondents from './SurveyRespondents.vue';
 
 export default {
   name: 'DetailTabs',
@@ -51,7 +54,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getDarkMode', 'getDetailedSurvey'])
+    ...mapGetters(['getDarkMode', 'getDetailedSurvey', 'getRespondentIds'])
   },
   methods: {
     generateSurveySummary() {
@@ -60,7 +63,8 @@ export default {
     },
   },
   components: {
-    SurveyThemes
+    SurveyThemes,
+    SurveyRespondents,
   }
 }
 </script>
