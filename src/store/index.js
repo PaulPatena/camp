@@ -22,6 +22,22 @@ export default new Vuex.Store({
     getSurveys: state => state.surveys,
     getDetailedViewIdx: state => state.detailedViewIdx,
     getDetailedSurvey: state => state.detailedSurvey,
+    getRespondentIds: state => {
+      // Assuming the survey_responses are sorted based on respondent_id
+      return state.detailedSurvey.themes[0].questions[0].survey_responses.map(resp => resp.respondent_id)
+    },
+    getResponsesFromId: state => id => {
+      const responses = []
+      state.detailedSurvey.themes.forEach(theme => {
+        theme.questions.forEach(question => {
+          responses.push({
+            description: question.description,
+            response_content: question.survey_responses.filter(resp => resp.respondent_id === id)[0].response_content
+          })
+        })
+      });
+      return responses
+    }
   },
   mutations: {
     invertDarkMode(state) {
