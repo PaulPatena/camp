@@ -30,7 +30,6 @@
           <v-card-text >
             <SurveyThemes v-if="idx===0" :themes="getDetailedSurvey.themes"/>
             <SurveyRespondents v-else :respondentIds="getRespondentIds"/>
-            <!-- TODO: Componentize common-code shared between SurveyThemes and SurveryRespondents -->
           </v-card-text>
         </v-card>
       </v-tab-item>

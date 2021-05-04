@@ -1,23 +1,18 @@
 <template>
-    <v-expansion-panels
-      v-model="panel" multiple :dark="getDarkMode"
-    >
-      <div class="mb-2">
-        <v-btn text color="primary" @click="expandAll()" class="mr-2">Expand All</v-btn>
-         <v-btn text color="primary" @click="collapseAll()">Collapse All</v-btn>
-      </div>
-      <v-expansion-panel
-        v-for="respondentId in respondentIds" :key="respondentId + `-respondent`"
-      >
-        <v-expansion-panel-header>Respondent: {{ respondentId }}</v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <li v-for="response in getResponsesFromId(respondentId)" :key="response.description + `-personal`" class="mb-2">
-            {{response.description}} {{response.response_content}}
-            <StarRating :rating="response.response_content"/>
-          </li>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-expansion-panels>
+  <v-card class="pa-2" :dark="getDarkMode">
+    <v-select
+      class="mt-2"
+      outlined prepend-icon="mdi-account" label="respondent_id"
+      :items="respondentIds" v-model="respondentId"></v-select>
+
+    <div v-if="respondentId!==undefined" class="px-2">
+      <p v-for="response in getResponsesFromId(respondentId)" :key="response.description + `-personal`" class="mb-2">
+        {{response.description}} {{response.response_content}}
+        <StarRating :rating="response.response_content"/>
+      </p>
+    </div>
+
+  </v-card>
 </template>
 
 <script>
@@ -33,19 +28,12 @@ export default {
     respondentIds: {type: Array}
   },
   data: () => ({
-    panel: [],
+    respondentId: undefined
   }),
   computed: {
     ...mapGetters(['getDarkMode', 'getResponsesFromId']),
   },
   methods: {
-    expandAll () {
-      this.panel = this.respondentIds.map((id, idx) => idx)
-    },
-    // Reset the panel
-    collapseAll () {
-      this.panel = []
-    },
   }
 };
 </script>
